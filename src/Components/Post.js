@@ -12,9 +12,10 @@ function Post(props) {
     return (
         <div className="post">
             <img src={props.pictureObj.photo_url} alt="Post" width="400" height="400"></img>
-            <h4>{props.pictureObj.user.username}:</h4>
+            <h4>{props.currentUserObj.username}:</h4>
             <p>{props.pictureObj.Caption}</p>
             <hr></hr>
+            <h3>Comments</h3>
             {renderComments()}
         </div>
     );

@@ -4,9 +4,9 @@ import ProfilePicture from './ProfilePicture'
 function ProfileHeader(props) {
     return (
         <div>
-            <ProfilePicture />
-            <h1>I am a the Username</h1>
-            <p>I am the Bio</p>
+            <ProfilePicture currentUserObj={props.currentUserObj}/>
+            <h1>{props.currentUserObj.username}</h1>
+            <p>{props.currentUserObj.bio}</p>
         </div>
     );
 }

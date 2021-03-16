@@ -3,22 +3,33 @@ import ProfileHeader from './ProfileHeader'
 import ProfileFeed from './ProfileFeed'
 
 function ProfilePage(props) {
-    const [pictureArray, setPictureArray] = useState([]);
+    // const [pictureArray, setPictureArray] = useState([]);
 
 
-    useEffect(() => {
-        fetch('http://localhost:3000/pictures')
-        .then(r => r.json())
-        .then(data => setPictureArray(data))
-    }, []);
+    // useEffect(() => {
+    //     // if (props.currentUserObj){
+    //     //     fetch(`http://localhost:3000/users/${props.currentUserObj.id}`)
+    //     //     .then(r => r.json())
+    //     //     .then(data => {
+    //     //         console.log(data)
+    //     //         setPictureArray(data.pictures)
+    //     //     })
+    //     // }
+    // }, []);
 
-    console.log(pictureArray)
+    console.log(props.currentUserObj)
 
     return (
         <div>
-            <ProfileHeader />
-            <hr></hr>
-            <ProfileFeed pictures={pictureArray}/>
+            {props.currentUserObj ?
+            <>
+                <ProfileHeader currentUserObj={props.currentUserObj}/>
+                <hr></hr>
+                <ProfileFeed pictures={props.currentUserObj.pictures} currentUserObj={props.currentUserObj}/>
+                </>
+            :
+            null
+            }
         </div>
     );
 }
