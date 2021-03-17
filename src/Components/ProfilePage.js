@@ -17,8 +17,6 @@ function ProfilePage(props) {
     //     // }
     // }, []);
 
-    console.log(props.currentUserObj)
-
     return (
         <div>
             {props.currentUserObj ?

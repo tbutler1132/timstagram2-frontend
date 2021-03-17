@@ -15,7 +15,6 @@ function App(props) {
 
   useEffect(() => {
     const token = localStorage.getItem("token")
-    console.log(token)
 
     if (token) {
       fetch(`http://localhost:3000/profile`, {
@@ -65,15 +64,15 @@ function App(props) {
   const deleteUserPicture = (pictureId) => {
     const deletedPic = userObj.pictures.find(el => el.id === pictureId)
     const deletedPicIndex = userObj.pictures.indexOf(deletedPic)
-    console.log(deletedPicIndex)
-    userObj.pictures.splice(1, deletedPicIndex)
-    setUserObj(userObj)
+    const newUserObj = {...userObj}
+    newUserObj.pictures.splice(1, deletedPicIndex)
+    setUserObj(newUserObj)
   }
 
 
   return (
     <div className="App">
-      <NavBar logoutHandler={logoutHandler}/>
+      <NavBar currentUserObj={userObj} logoutHandler={logoutHandler}/>
       <hr></hr>
       <Switch>
         <Route path="/login" render={() => <Login loginHandler={loginHandler}/>} />
@@ -82,15 +81,6 @@ function App(props) {
       </Switch>
     </div>
   );
-}
-
-
-const mapStateToProps = (state) => {
-  // return {currentUserRedux: state.currentUserRedux}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  // return {fetchTracks: () => dispatch(getTracks())}
 }
 
 export default withRouter

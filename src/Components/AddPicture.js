@@ -33,6 +33,9 @@ function AddPicture(props) {
         .then(data => {
             props.updateUserPictures(data)
             props.history.push("/profile")})
+        .catch(error => {
+            console.log('Error:', error);
+        });
 
     }
 

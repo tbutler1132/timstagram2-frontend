@@ -7,7 +7,8 @@ function DeleteButton(props) {
             method: 'DELETE',
         })
         .then(r => r.json()) 
-        .then(data => props.deletePicture(props.pictureId))
+        .then(data => {
+            props.deletePicture(props.pictureId)})
     }
 
     return (
