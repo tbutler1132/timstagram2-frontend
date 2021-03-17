@@ -8,4 +8,4 @@ function ProfilePicture(props) {
     );
 }
 
-export default ProfilePicture;<p>I am the profile ProfilePicture</p>
+export default ProfilePicture

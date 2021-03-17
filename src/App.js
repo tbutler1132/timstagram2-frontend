@@ -6,6 +6,9 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import Login from './Components/Login'
 import NavBar from './Components/NavBar'
 import AddPicture from './Components/AddPicture'
+import {saveCurrentUserObj} from './Redux/action'
+import {compose} from 'react'
+import { connect } from 'react-redux'
 
 function App(props) {
   const [userObj, setUserObj] = useState(false);
@@ -53,6 +56,20 @@ function App(props) {
     props.history.push("/login")
     setUserObj(null)
   }
+  
+  const updateUserPictures = (picture) => {
+    userObj.pictures.push(picture)
+    setUserObj(userObj)
+  }
+
+  const deleteUserPicture = (pictureId) => {
+    const deletedPic = userObj.pictures.find(el => el.id === pictureId)
+    const deletedPicIndex = userObj.pictures.indexOf(deletedPic)
+    console.log(deletedPicIndex)
+    userObj.pictures.splice(1, deletedPicIndex)
+    setUserObj(userObj)
+  }
+
 
   return (
     <div className="App">
@@ -60,11 +77,21 @@ function App(props) {
       <hr></hr>
       <Switch>
         <Route path="/login" render={() => <Login loginHandler={loginHandler}/>} />
-        <Route path="/profile" render={() => <ProfilePage currentUserObj={userObj}/>} />
-        <Route path="/addPhoto" render={() => <AddPicture currentUserObj={userObj}/>} />
+        <Route path="/profile" render={() => <ProfilePage currentUserObj={userObj} deletePicture={deleteUserPicture}/>} />
+        <Route path="/addPhoto" render={() => <AddPicture currentUserObj={userObj} updateUserPictures={updateUserPictures}/>} />
       </Switch>
     </div>
   );
 }
 
-export default withRouter(App);
+
+const mapStateToProps = (state) => {
+  // return {currentUserRedux: state.currentUserRedux}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  // return {fetchTracks: () => dispatch(getTracks())}
+}
+
+export default withRouter
+(App);

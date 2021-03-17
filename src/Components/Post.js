@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteButton from './DeleteButton'
 
 function Post(props) {
 
@@ -17,8 +18,9 @@ function Post(props) {
             <hr></hr>
             <h3>Comments</h3>
             {renderComments()}
+            <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
         </div>
     );
 }
 
-export default Post;<p>I am a post</p>
+export default Post

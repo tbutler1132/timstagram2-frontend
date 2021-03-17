@@ -25,7 +25,7 @@ function ProfilePage(props) {
             <>
                 <ProfileHeader currentUserObj={props.currentUserObj}/>
                 <hr></hr>
-                <ProfileFeed pictures={props.currentUserObj.pictures} currentUserObj={props.currentUserObj}/>
+                <ProfileFeed pictures={props.currentUserObj.pictures} currentUserObj={props.currentUserObj} deletePicture={props.deletePicture}/>
                 </>
             :
             null
