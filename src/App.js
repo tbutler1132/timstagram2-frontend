@@ -6,9 +6,8 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import Login from './Components/Login'
 import NavBar from './Components/NavBar'
 import AddPicture from './Components/AddPicture'
-import {saveCurrentUserObj} from './Redux/action'
-import {compose} from 'react'
-import { connect } from 'react-redux'
+import ProfileContainer from './Components/ProfileContainer'
+
 
 function App(props) {
   const [userObj, setUserObj] = useState(false);
@@ -78,6 +77,7 @@ function App(props) {
         <Route path="/login" render={() => <Login loginHandler={loginHandler}/>} />
         <Route path="/profile" render={() => <ProfilePage currentUserObj={userObj} deletePicture={deleteUserPicture}/>} />
         <Route path="/addPhoto" render={() => <AddPicture currentUserObj={userObj} updateUserPictures={updateUserPictures}/>} />
+        <Route path="/profiles" render={() => <ProfileContainer currentUserObj={userObj} updateUserPictures={updateUserPictures}/>} />
       </Switch>
     </div>
   );

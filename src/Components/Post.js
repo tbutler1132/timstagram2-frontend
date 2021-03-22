@@ -12,13 +12,15 @@ function Post(props) {
 
     return (
         <div className="post">
-            <img src={props.pictureObj.photo_url} alt="Post" width="400" height="400"></img>
-            <h4>{props.currentUserObj.username}:</h4>
-            <p>{props.pictureObj.Caption}</p>
-            <hr></hr>
-            <h3>Comments</h3>
-            {renderComments()}
-            <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
+            <img id="post-image" src={props.pictureObj.photo_url} alt="Post" width="400" height="400"></img>
+            <div className="post-text">
+                <div className="post-caption">
+                    <h4>{props.currentUserObj.username}:</h4>
+                    <p>{props.pictureObj.Caption}</p>
+                </div>
+                {renderComments()}
+                <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
+            </div>
         </div>
     );
 }

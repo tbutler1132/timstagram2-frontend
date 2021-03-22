@@ -1,21 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import ProfileHeader from './ProfileHeader'
 import ProfileFeed from './ProfileFeed'
+import {Route, Switch} from 'react-router-dom'
 
 function ProfilePage(props) {
-    // const [pictureArray, setPictureArray] = useState([]);
-
-
-    // useEffect(() => {
-    //     // if (props.currentUserObj){
-    //     //     fetch(`http://localhost:3000/users/${props.currentUserObj.id}`)
-    //     //     .then(r => r.json())
-    //     //     .then(data => {
-    //     //         console.log(data)
-    //     //         setPictureArray(data.pictures)
-    //     //     })
-    //     // }
-    // }, []);
 
     return (
         <div>

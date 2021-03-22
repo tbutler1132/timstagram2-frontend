@@ -7,7 +7,7 @@ function ProfileFeed(props) {
     const renderPictures = () => {return props.pictures.map(picture => <Post pictureObj={picture} key={picture.id} currentUserObj={props.currentUserObj} deletePicture={props.deletePicture}/>)}
 
     return (
-        <div>
+        <div className="profile-feed">
             {renderPictures()}
         </div>
     );
