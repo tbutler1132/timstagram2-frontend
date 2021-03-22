@@ -12,7 +12,7 @@ function DeleteButton(props) {
     }
 
     return (
-        <div>
+        <div className="delete-button">
             <button onClick={deletePhoto}>Delete</button>
         </div>
     );

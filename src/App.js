@@ -44,7 +44,7 @@ function App(props) {
       console.log(data)
       setUserObj(data.user)
       localStorage.setItem("token", data.jwt)
-      props.history.push('/profile')
+      props.history.push(`/profiles/${data.user.id}`)
     })
     .catch(error => console.log(error))
   }
@@ -75,9 +75,9 @@ function App(props) {
       <hr></hr>
       <Switch>
         <Route path="/login" render={() => <Login loginHandler={loginHandler}/>} />
-        <Route path="/profile" render={() => <ProfilePage currentUserObj={userObj} deletePicture={deleteUserPicture}/>} />
-        <Route path="/addPhoto" render={() => <AddPicture currentUserObj={userObj} updateUserPictures={updateUserPictures}/>} />
-        <Route path="/profiles" render={() => <ProfileContainer currentUserObj={userObj} updateUserPictures={updateUserPictures}/>} />
+        {/* <Route path="/profile" render={() => <ProfilePage currentUserObj={userObj} deletePicture={deleteUserPicture}/>} /> */}
+        <Route path="/addPhoto" render={() => <AddPicture loggedInUser={userObj} updateUserPictures={updateUserPictures}/>} />
+        <Route path="/profiles" render={() => <ProfileContainer loggedInUser={userObj} updateUserPictures={updateUserPictures} deleteUserPicture={deleteUserPicture}/>} />
       </Switch>
     </div>
   );

@@ -20,7 +20,7 @@ function ProfileContainer(props) {
     const renderProfiles = () => {
         return profiles.map(profile => 
             
-            <p>{profile.username}</p>
+            <ProfilePage loggedInUser={props.loggedInUser} deletePicture={props.deletePicture} userObj={profile} />
 
         )
     }
@@ -32,7 +32,7 @@ function ProfileContainer(props) {
                         <Route path="/profiles/:id" render={({match}) => {
                             const id = parseInt(match.params.id)
                             const foundProfile = profiles.find((profile) => profile.id === id)
-                            return <ProfilePage currentUserObj={foundProfile} />
+                            return <ProfilePage loggedInUser={props.loggedInUser} userObj={foundProfile} deletePicture={props.deletePicture}/>
                         }}/>
                         <Route path="/profiles" render={() =>
                         <>

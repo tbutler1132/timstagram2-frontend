@@ -4,9 +4,8 @@ import DeleteButton from './DeleteButton'
 function Post(props) {
 
     const renderComments = () => {return props.pictureObj.comments.map(comment => comment.content ? 
-        <div key={comment.id}>
-            <h5>{comment.user}:</h5>
-            <p>{comment.content}</p>
+        <div className="post-comment" key={comment.id}>
+            <p>{comment.user}: {comment.content}</p>
         </div> 
         : null)}
 
@@ -15,7 +14,7 @@ function Post(props) {
             <img id="post-image" src={props.pictureObj.photo_url} alt="Post" width="400" height="400"></img>
             <div className="post-text">
                 <div className="post-caption">
-                    <h4>{props.currentUserObj.username}:</h4>
+                    <h4>{props.userObj.username}:</h4>
                     <p>{props.pictureObj.Caption}</p>
                 </div>
                 {renderComments()}

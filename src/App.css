@@ -87,3 +87,8 @@
 .post-caption {
   border: solid;
 }
+
+.delete-button {
+  position: relative;
+  top: 200px;
+}

@@ -4,7 +4,7 @@ import Post from './Post'
 
 function ProfileFeed(props) {
 
-    const renderPictures = () => {return props.pictures.map(picture => <Post pictureObj={picture} key={picture.id} currentUserObj={props.currentUserObj} deletePicture={props.deletePicture}/>)}
+    const renderPictures = () => {return props.pictures.map(picture => <Post loggedInUser={props.loggedInUser} pictureObj={picture} key={picture.id} userObj={props.userObj} deletePicture={props.deletePicture}/>)}
 
     return (
         <div className="profile-feed">

@@ -17,7 +17,7 @@ function AddPicture(props) {
         e.preventDefault()
         const newPicture = {
             photo_url: url,
-            user_id: props.currentUserObj.id,
+            user_id: props.loggedInUser.id,
             Caption: caption
         }
         const options = {
