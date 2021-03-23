@@ -1,7 +1,13 @@
 import React from 'react';
 import ProfilePicture from './ProfilePicture'
+import FollowButton from './FollowButton'
 
 function ProfileHeader(props) {
+
+    const doesLoggedInUserFollowUser = () => {
+        const followerIds = (props.loggedInUser.followees.map(user => user.id))
+        return followerIds.includes(props.userObj.id)
+    }
 
     return (
         <div className="profile-header">
@@ -13,7 +19,13 @@ function ProfileHeader(props) {
             {props.loggedInUser.id === props.userObj.id ?
             <button>Edit Profile</button>
             :
-            null}
+            
+            !doesLoggedInUserFollowUser() ? 
+            <FollowButton loggedInUser={props.loggedInUser} userObj={props.userObj}/>
+            :
+            <p>Following</p>
+            
+            }
         </div>
     );
 }

@@ -32,7 +32,7 @@ function AddPicture(props) {
         .then(r => r.json())
         .then(data => {
             props.updateUserPictures(data)
-            props.history.push("/profile")})
+            props.history.push(`/profiles/${props.loggedInUser.id}`)})
         .catch(error => {
             console.log('Error:', error);
         });

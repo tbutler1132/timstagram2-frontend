@@ -1,5 +1,6 @@
 import React from 'react';
 import DeleteButton from './DeleteButton'
+import AddCommentForm from './AddCommentForm'
 
 function Post(props) {
 
@@ -18,7 +19,12 @@ function Post(props) {
                     <p>{props.pictureObj.Caption}</p>
                 </div>
                 {renderComments()}
-                <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
+                <AddCommentForm userObj={props.userObj} pictureId={props.pictureObj.id}/>
+                {props.userObj.id === props.loggedInUser.id ?
+                    <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
+                :
+                    null
+                }
             </div>
         </div>
     );
