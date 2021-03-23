@@ -13,7 +13,7 @@ function DeleteButton(props) {
 
     return (
         <div className="delete-button">
-            <button onClick={deletePhoto}>Delete</button>
+            <button onClick={deletePhoto}>Delete Post</button>
         </div>
     );
 }

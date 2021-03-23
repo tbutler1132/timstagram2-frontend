@@ -6,7 +6,7 @@ import {Route, Switch, Link} from 'react-router-dom'
 function ProfilePage(props) {
 
     return (
-        <div>
+        <div className="profile-page">
             {props.userObj ?
             <Switch>
                 <Route path="/profiles/:id"

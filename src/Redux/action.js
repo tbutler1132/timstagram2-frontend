@@ -1,3 +1,10 @@
-export const saveCurrentUserObj = (userObj) => {
-    return ({type: "save_current_user_obj", payload: userObj})
+export const getUsers = () => {
+    return function (dispatch){
+        fetch(`http://localhost:3000/users`, {
+        })
+        .then(r => r.json())
+        .then(data => {
+            dispatch({type: "add_users_from_fetch", payload: data})
+        })
+    }   
 }

@@ -12,20 +12,23 @@ function ProfileHeader(props) {
     return (
         <div className="profile-header">
             <ProfilePicture userObj={props.userObj}/>
-            <h1>{props.userObj.username}</h1>
-            <p>{props.userObj.bio}</p>
-            <p>Followers: {props.userObj.followers.length}</p>
-            <p>Following: {props.userObj.followees.length}</p>
-            {props.loggedInUser.id === props.userObj.id ?
-            <button>Edit Profile</button>
-            :
-            
-            !doesLoggedInUserFollowUser() ? 
-            <FollowButton loggedInUser={props.loggedInUser} userObj={props.userObj}/>
-            :
-            <p>Following</p>
-            
-            }
+            <div className="header-bio">
+                <h2>{props.userObj.username}</h2>
+                <p>{props.userObj.bio}</p>
+                <p>Followers: {props.userObj.followers.length}</p>
+                <p>Following: {props.userObj.followees.length}</p>
+            </div>
+            <div className="profile-header-buttons">
+                {props.loggedInUser.id === props.userObj.id ?
+                <button>Edit Profile</button>
+                :
+                
+                !doesLoggedInUserFollowUser() ? 
+                <FollowButton loggedInUser={props.loggedInUser} userObj={props.userObj}/>
+                :
+                <p>Following</p>
+                }
+            </div>
         </div>
     );
 }

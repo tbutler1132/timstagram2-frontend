@@ -72,10 +72,8 @@ function App(props) {
   return (
     <div className="App">
       <NavBar currentUserObj={userObj} logoutHandler={logoutHandler}/>
-      <hr></hr>
       <Switch>
         <Route path="/login" render={() => <Login loginHandler={loginHandler}/>} />
-        {/* <Route path="/profile" render={() => <ProfilePage currentUserObj={userObj} deletePicture={deleteUserPicture}/>} /> */}
         <Route path="/addPhoto" render={() => <AddPicture loggedInUser={userObj} updateUserPictures={updateUserPictures}/>} />
         <Route path="/profiles" render={() => <ProfileContainer loggedInUser={userObj} updateUserPictures={updateUserPictures} deleteUserPicture={deleteUserPicture}/>} />
       </Switch>

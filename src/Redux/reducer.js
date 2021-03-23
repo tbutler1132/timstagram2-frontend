@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux'
 
 const defaultState = {
-    currentUserRedux: false
+    users: []
 }
 
-function currentUserReducer(currentState = defaultState.currentUserRedux, action){
+function usersReducer(currentState = defaultState.users, action){
     switch (action.type){
-        case "save_current_user_obj":
+        case "add_users_from_fetch":
             return action.payload
         default:
             return currentState
@@ -14,7 +14,7 @@ function currentUserReducer(currentState = defaultState.currentUserRedux, action
 }
 
 const rootReducer = combineReducers({
-    currentUser: currentUserReducer
+    users: usersReducer
 })
 
 export default rootReducer

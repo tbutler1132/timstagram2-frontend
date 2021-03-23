@@ -19,12 +19,14 @@ function Post(props) {
                     <p>{props.pictureObj.Caption}</p>
                 </div>
                 {renderComments()}
-                <AddCommentForm userObj={props.userObj} pictureId={props.pictureObj.id}/>
-                {props.userObj.id === props.loggedInUser.id ?
-                    <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
-                :
-                    null
-                }
+                <div className="post-buttons">
+                    <AddCommentForm userObj={props.userObj} pictureId={props.pictureObj.id}/>
+                    {props.userObj.id === props.loggedInUser.id ?
+                        <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
+                    :
+                        null
+                    }
+                </div>
             </div>
         </div>
     );
