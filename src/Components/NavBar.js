@@ -1,19 +1,38 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
+import HomeIcon from '@material-ui/icons/Home';
+import {withRouter} from 'react-router-dom'
+import {Button} from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add';
+import SearchIcon from '@material-ui/icons/Search';
 
 function NavBar(props) {
+
+    const pushToHome = () => {
+        props.history.push(`/profiles/${props.currentUserObj.id}`)
+    }
+
+    const pushToAddPhoto = () => {
+        props.history.push("/addPhoto")
+    }
+
+    const pushToProfiles = () => {
+        props.history.push("/profiles")
+    }
+
     return (
         <div className="nav-bar">
             <h1 className="nav-logo">Timstagram</h1>
             {props.currentUserObj ?
             <>
             <div className="nav-search">
-                <NavLink to="/profiles">View Other Users</NavLink> 
+                <input onChange={pushToProfiles} type="text" placeholder="Search.."></input>
+                <SearchIcon onClick={pushToProfiles} />
             </div>
             <div className="nav-buttons">
-            <NavLink to="/addPhoto">Create Post</NavLink>
-            <NavLink to={`/profiles/${props.currentUserObj.id}`}>Home</NavLink>
-            <button type="button" onClick={props.logoutHandler}>Logout</button> 
+                <AddIcon onClick={pushToAddPhoto}/>
+                <HomeIcon onClick={pushToHome}/>
+                <Button color="secondary" onClick={props.logoutHandler}>Logout</Button> 
             </div>
             </>
             : 
@@ -22,4 +41,4 @@ function NavBar(props) {
     );
 }
 
-export default NavBar;
+export default withRouter(NavBar);

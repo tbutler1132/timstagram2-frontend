@@ -43,5 +43,68 @@
 
 .nav-bar {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgb(211, 208, 208);
+}
+
+.nav-search {
+  display: flex;
+  align-items: center;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile-header {
+  display: flex;
   justify-content: center;
+  background: rgb(49, 48, 47);
+}
+
+.profile-picture {
+  margin-right: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.header-bio {
+  color: aliceblue;
+}
+
+.profile-header-buttons {
+  margin-top: 1.2%;
+  margin-left: 2%;
+}
+
+#profile-pic {
+  border-radius: 50%;
+}
+
+.profile-feed {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.post {
+  display: flex;
+  border-style: solid;
+  max-width: min-content;
+  margin-top: 1%;
+}
+
+
+.post-caption {
+  border-bottom: solid;
+  border-width: thin;
+}
+
+.post-comment-section {
+  border-bottom: solid;
+  border-width: thin;
 }

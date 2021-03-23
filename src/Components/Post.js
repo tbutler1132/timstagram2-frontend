@@ -18,7 +18,9 @@ function Post(props) {
                     <h4>{props.userObj.username}:</h4>
                     <p>{props.pictureObj.Caption}</p>
                 </div>
-                {renderComments()}
+                <div className="post-comment-section">
+                    {renderComments()}
+                </div>
                 <div className="post-buttons">
                     <AddCommentForm userObj={props.userObj} pictureId={props.pictureObj.id}/>
                     {props.userObj.id === props.loggedInUser.id ?
