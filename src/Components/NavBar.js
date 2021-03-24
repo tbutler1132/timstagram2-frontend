@@ -22,7 +22,7 @@ function NavBar(props) {
 
     return (
         <div className="nav-bar">
-            <h1 className="nav-logo">Timstagram</h1>
+            <h1 onClick={pushToHome} className="nav-logo">Timstagram</h1>
             {props.currentUserObj ?
             <>
             <div className="nav-search">

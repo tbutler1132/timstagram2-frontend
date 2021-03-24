@@ -16,7 +16,7 @@ function ProfilePage(props) {
                                 <>
                                     <ProfileHeader loggedInUser={props.loggedInUser} userObj={props.userObj}/>
                                     <hr></hr>
-                                    <ProfileFeed loggedInUser={props.loggedInUser} pictures={props.userObj.pictures} userObj={props.userObj} deletePicture={props.deletePicture}/>
+                                    <ProfileFeed loggedInUser={props.loggedInUser} userObj={props.userObj} deletePicture={props.deletePicture}/>
                                 </>
                             )
                         }

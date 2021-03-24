@@ -8,17 +8,8 @@ import {getUsers} from '../Redux/action'
 
 function ProfileContainer(props) {
 
-    // const [profiles, addProfiles] = useState([])
-
     useEffect(() => {
         props.fetchUsers()
-        // fetch(`http://localhost:3000/users`, {
-        //   })
-        //   .then(r => r.json())
-        //     .then(data => {
-        //       console.log(data);
-        //       addProfiles(data)
-        //   })
     }, [])
 
     const renderProfiles = () => {
@@ -28,8 +19,6 @@ function ProfileContainer(props) {
 
         )
     }
-
-    console.log(props)
 
     return (
         <div>

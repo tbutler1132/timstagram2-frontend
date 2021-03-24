@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {addComment} from '../Redux/action'
+import {connect} from 'react-redux'
 
 function AddCommentForm(props) {
     const [comment, setComment] = useState("")
@@ -25,7 +27,7 @@ function AddCommentForm(props) {
         fetch("http://localhost:3000/comments", options)
         .then(r => r.json())
         .then(data => {
-            console.log(data)
+            props.addNewComment(data)
         })
         .catch(error => {
             console.log('Error:', error);
@@ -43,4 +45,8 @@ function AddCommentForm(props) {
     );
 }
 
-export default AddCommentForm;
+const mdp = (dispatch) => {
+    return {addNewComment: (commentObj) => dispatch({type: "add_comment", payload: commentObj})}
+}
+
+export default connect(null, mdp)(AddCommentForm);

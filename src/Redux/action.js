@@ -8,3 +8,10 @@ export const getUsers = () => {
         })
     }   
 }
+
+export const addComment = (commentObj) => {
+    console.log(commentObj)
+    return function (dispatch){
+        dispatch({type: "add_comment", payload: commentObj})
+    }
+}
