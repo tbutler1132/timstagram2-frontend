@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import ProfilePage from './Components/ProfilePage'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import Login from './Components/Login'
 import NavBar from './Components/NavBar'
@@ -28,7 +26,7 @@ function App(props) {
     } else {
       props.history.push('/login')
     }
-  }, []);
+  }, [props.history]);
 
   const loginHandler = (userInfo) => {
     fetch(`http://localhost:3000/login`, {
@@ -72,7 +70,7 @@ function App(props) {
     <div className="App">
       <NavBar currentUserObj={userObj} logoutHandler={logoutHandler}/>
       <Switch>
-        <Route path="/login" render={() => <Login loginHandler={loginHandler}/>} />
+        <Route exact path="/" render={() => <Login loginHandler={loginHandler}/>} />
         <Route path="/addPhoto" render={() => <AddPicture loggedInUser={userObj} updateUserPictures={updateUserPictures}/>} />
         <Route path="/profiles" render={() => <ProfileContainer loggedInUser={userObj} updateUserPictures={updateUserPictures} deleteUserPicture={deleteUserPicture}/>} />
       </Switch>

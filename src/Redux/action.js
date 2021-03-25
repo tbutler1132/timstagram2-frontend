@@ -15,3 +15,9 @@ export const addComment = (commentObj) => {
         dispatch({type: "add_comment", payload: commentObj})
     }
 }
+
+// export const addLike = (likeObj) => {
+//     return function (dispatch){
+//         dispatch({type: "add_like", payload: likeObj})
+//     }
+// }

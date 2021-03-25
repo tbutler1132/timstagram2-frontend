@@ -33,6 +33,7 @@ function AddCommentForm(props) {
             console.log(data)
             data.userObj = props.userObj
             props.addNewComment(data)
+            setComment("")
         })
         .catch(error => {
             console.log('Error:', error);

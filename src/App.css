@@ -108,6 +108,11 @@
   border-width: thin;
 }
 
+.post-like {
+  border-bottom: solid;
+  border-width: thin;
+}
+
 .post-comment-section {
   border-bottom: solid;
   border-width: thin;
