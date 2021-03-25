@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {addComment} from '../Redux/action'
+import {addNewComment} from '../Redux/action'
 import {connect} from 'react-redux'
 
 function AddCommentForm(props) {

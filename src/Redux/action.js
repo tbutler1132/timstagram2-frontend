@@ -9,15 +9,14 @@ export const getUsers = () => {
     }   
 }
 
-export const addComment = (commentObj) => {
-    console.log(commentObj)
+export const addNewComment = (commentObj) => {
     return function (dispatch){
         dispatch({type: "add_comment", payload: commentObj})
     }
 }
 
-// export const addLike = (likeObj) => {
-//     return function (dispatch){
-//         dispatch({type: "add_like", payload: likeObj})
-//     }
-// }
+export const addLike = (likeObj) => {
+    return function (dispatch){
+        dispatch({type: "add_like", payload: likeObj})
+    }
+}
