@@ -15,10 +15,16 @@ function ProfileContainer(props) {
     const renderProfiles = () => {
         return props.profiles.map(profile => 
             
-            <ProfilePage key={profile.id} loggedInUser={props.loggedInUser} deletePicture={props.deletePicture} userObj={profile} />
+            <ProfilePage key={profile.id} loggedInUser={findLoggedInUser()} deletePicture={props.deletePicture} userObj={profile} />
 
         )
     }
+
+    const findLoggedInUser = () => {
+        return props.profiles.find(user => user.id === props.loggedInUser.id)
+    }
+
+    console.log(findLoggedInUser())
 
     return (
         <div>
@@ -27,7 +33,7 @@ function ProfileContainer(props) {
                         <Route path="/profiles/:id" render={({match}) => {
                             const id = parseInt(match.params.id)
                             const foundProfile = props.profiles.find((profile) => profile.id === id)
-                            return <ProfilePage loggedInUser={props.loggedInUser} userObj={foundProfile} deletePicture={props.deletePicture}/>
+                            return <ProfilePage loggedInUser={findLoggedInUser()} userObj={foundProfile} deletePicture={props.deletePicture}/>
                         }}/>
                         <Route path="/profiles" render={() =>
                         <>

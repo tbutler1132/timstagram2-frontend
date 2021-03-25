@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import {connect} from 'react-redux'
 
 function LikePost(props) {
+    const [pictureLiked, setPictureLiked] = useState("")
+
+    useEffect(() => {
+            const liked = props.loggedInUser.likes.map(like => like.picture.id).includes(props.pictureObj.id)
+            if (liked) {setPictureLiked("secondary")}
+    }, [])
 
     const likePicture = () => {
         const newLike = {
@@ -22,16 +28,28 @@ function LikePost(props) {
         .then(data => {
             data.userObj = props.userObj
             props.addLike(data)
+            setPictureLiked("secondary")
         })
         .catch(error => {
             console.log('Error:', error);
         });
     }
 
+    const unlikePicture = () => {
+        const filteredLike = props.loggedInUser.likes.filter(like => props.pictureObj.likes.includes(like))
+        return filteredLike
+        // const options = {
+        //     method: "DELETE"
+        //   }
+        
+    }
+
+    console.log(unlikePicture())
+
     return (
         <div>
             <div className="post-like-button">
-                <FavoriteIcon color="secondary" onClick={likePicture}/>
+                <FavoriteIcon color={pictureLiked} onClick={likePicture}/>
             </div>
         </div>
     );
