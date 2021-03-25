@@ -22,7 +22,7 @@ function Post(props) {
                     {renderComments()}
                 </div>
                 <div className="post-buttons">
-                    <AddCommentForm userObj={props.userObj} pictureId={props.pictureObj.id}/>
+                    <AddCommentForm loggedInUser={props.loggedInUser} userObj={props.userObj} pictureId={props.pictureObj.id}/>
                     {props.userObj.id === props.loggedInUser.id ?
                         <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
                     :

@@ -3,6 +3,9 @@ import {addComment} from '../Redux/action'
 import {connect} from 'react-redux'
 
 function AddCommentForm(props) {
+    // console.log(props.userObj)
+    // console.log(props.loggedInUser)
+
     const [comment, setComment] = useState("")
 
     const commentHandler = (e) => {
@@ -13,7 +16,7 @@ function AddCommentForm(props) {
         e.preventDefault()
         const newComment = {
             picture_id: props.pictureId,
-            user_id: props.userObj.id,
+            user_id: props.loggedInUser.id,
             content: comment
         }
         const options = {
@@ -27,6 +30,8 @@ function AddCommentForm(props) {
         fetch("http://localhost:3000/comments", options)
         .then(r => r.json())
         .then(data => {
+            console.log(data)
+            data.userObj = props.userObj
             props.addNewComment(data)
         })
         .catch(error => {

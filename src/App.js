@@ -41,7 +41,6 @@ function App(props) {
     })
     .then(r => r.json())
     .then(data => {
-      console.log(data)
       setUserObj(data.user)
       localStorage.setItem("token", data.jwt)
       props.history.push(`/profiles/${data.user.id}`)
