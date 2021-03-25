@@ -5,6 +5,7 @@ import Login from './Components/Login'
 import NavBar from './Components/NavBar'
 import AddPicture from './Components/AddPicture'
 import ProfileContainer from './Components/ProfileContainer'
+import EditProfileForm from './Components/EditProfileForm'
 
 
 function App(props) {
@@ -73,6 +74,7 @@ function App(props) {
         <Route exact path="/" render={() => <Login loginHandler={loginHandler}/>} />
         <Route path="/addPhoto" render={() => <AddPicture loggedInUser={userObj} updateUserPictures={updateUserPictures}/>} />
         <Route path="/profiles" render={() => <ProfileContainer loggedInUser={userObj} updateUserPictures={updateUserPictures} deleteUserPicture={deleteUserPicture}/>} />
+        <Route path="/edit" render={() => <EditProfileForm loggedInUser={userObj} />} />
       </Switch>
     </div>
   );
