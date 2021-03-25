@@ -30,6 +30,7 @@ function usersReducer(currentState = defaultState.users, action){
             newArray2[userIndex2].pictures[pictureIndex2].likes.push(action.payload)
             console.log(newArray2)
             return newArray2
+        case "update_username":
         default:
             return currentState
     }

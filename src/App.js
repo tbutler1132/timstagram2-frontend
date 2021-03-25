@@ -71,7 +71,7 @@ function App(props) {
     <div className="App">
       <NavBar currentUserObj={userObj} logoutHandler={logoutHandler}/>
       <Switch>
-        <Route exact path="/" render={() => <Login loginHandler={loginHandler}/>} />
+        <Route exact path="/login" render={() => <Login loginHandler={loginHandler}/>} />
         <Route path="/addPhoto" render={() => <AddPicture loggedInUser={userObj} updateUserPictures={updateUserPictures}/>} />
         <Route path="/profiles" render={() => <ProfileContainer loggedInUser={userObj} updateUserPictures={updateUserPictures} deleteUserPicture={deleteUserPicture}/>} />
         <Route path="/edit" render={() => <EditProfileForm loggedInUser={userObj} />} />

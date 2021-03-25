@@ -2,12 +2,18 @@ import React from 'react';
 import DeleteButton from './DeleteButton'
 import AddCommentForm from './AddCommentForm'
 import LikePost from './LikePost'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 function Post(props) {
 
+    console.log(props.pictureObj.comments[0])
+
     const renderComments = () => {return props.pictureObj.comments.map(comment => comment.content ? 
         <div className="post-comment" key={comment.id}>
-            <p>{comment.user}: {comment.content}</p>
+            <p>
+                {comment.user.username}: {comment.content} 
+                {comment.user === props.loggedInUser ? <MoreHorizIcon /> : null}
+            </p>
         </div> 
         : null)
     }
