@@ -30,7 +30,6 @@ function AddCommentForm(props) {
         fetch("http://localhost:3000/comments", options)
         .then(r => r.json())
         .then(data => {
-            console.log(data)
             data.userObj = props.userObj
             props.addNewComment(data)
             setComment("")

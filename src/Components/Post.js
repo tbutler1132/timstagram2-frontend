@@ -6,10 +6,12 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 function Post(props) {
 
+    console.log(props.pictureObj.comments)
+
     const renderComments = () => {return props.pictureObj.comments.map(comment => comment.content ? 
         <div className="post-comment" key={comment.id}>
             <p>
-                {comment.user.username}: {comment.content} 
+                {comment.user.username ? comment.user.username : comment.user}: {comment.content} 
                 {comment.user === props.loggedInUser ? <MoreHorizIcon /> : null}
             </p>
         </div> 

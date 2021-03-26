@@ -5,6 +5,7 @@ const defaultState = {
 }
 
 function usersReducer(currentState = defaultState.users, action){
+    console.log(action.payload)
     const user = currentState.find(user => user.id === action.payload.userObj.id)
     const userIndex = currentState.indexOf(user)
     switch (action.type){
