@@ -23,9 +23,7 @@ function ProfileContainer(props) {
     const findLoggedInUser = () => {
         return props.profiles.find(user => user.id === props.loggedInUser.id)
     }
-
-    console.log(findLoggedInUser())
-
+    
     return (
         <div>
                     {props.profiles.length === 0 ? <p>Loading</p> : 
