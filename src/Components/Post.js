@@ -5,9 +5,7 @@ import LikePost from './LikePost'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 function Post(props) {
-
-    console.log(props.pictureObj.comments)
-
+    
     const renderComments = () => {return props.pictureObj.comments.map(comment => comment.content ? 
         <div className="post-comment" key={comment.id}>
             <p>

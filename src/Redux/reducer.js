@@ -6,7 +6,7 @@ const defaultState = {
 
 function usersReducer(currentState = defaultState.users, action){
     console.log(action.payload)
-    const user = currentState.find(user => user.id === action.payload.userObj.id)
+    const user = currentState.find(user => user.id === action.payload.userObj?.id)
     const userIndex = currentState.indexOf(user)
     switch (action.type){
         case "add_users_from_fetch":
@@ -41,6 +41,13 @@ function usersReducer(currentState = defaultState.users, action){
             newArrayDeleteLike[userIndex].pictures[pictureIndexDeleteLike].likes.splice(likeIndex, 1)
             return newArrayDeleteLike
         case "update_username":
+        case "add_picture":
+            const findLoggedInUser = currentState.find(user => user.id === action.payload.user.id)
+            const loggedInUserIndex = currentState.indexOf(findLoggedInUser)
+            const newArrayAddPicture = currentState.slice()
+            newArrayAddPicture[loggedInUserIndex].pictures.push(action.payload)
+            return newArrayAddPicture
+
         default:
             return currentState
     }

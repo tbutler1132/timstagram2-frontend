@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { withRouter } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {compose} from 'redux'
 
 function AddPicture(props) {
     const [url, setUrl] = useState("")
@@ -31,7 +33,7 @@ function AddPicture(props) {
         fetch("http://localhost:3000/pictures", options)
         .then(r => r.json())
         .then(data => {
-            props.updateUserPictures(data)
+            props.addNewPicture(data)
             props.history.push(`/profiles/${props.loggedInUser.id}`)})
         .catch(error => {
             console.log('Error:', error);
@@ -52,4 +54,11 @@ function AddPicture(props) {
     );
 }
 
-export default withRouter(AddPicture);
+const mdp = (dispatch) => {
+    return {addNewPicture: (pictureObj) => dispatch({type: "add_picture", payload: pictureObj})}
+}
+
+export default compose (
+    connect(null, mdp),
+    withRouter)
+(AddPicture);

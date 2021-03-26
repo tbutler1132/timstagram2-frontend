@@ -9,6 +9,12 @@ export const getUsers = () => {
     }   
 }
 
+export const addPicture = (pictureObj) => {
+    return function(dispatch){
+        dispatch({type: "add_picture", payload: pictureObj})
+    }
+}
+
 export const addNewComment = (commentObj) => {
     return function (dispatch){
         dispatch({type: "add_comment", payload: commentObj})
