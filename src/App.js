@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import Login from './Components/Login'
 import NavBar from './Components/NavBar'
 import AddPicture from './Components/AddPicture'
@@ -28,6 +28,25 @@ function App(props) {
       props.history.push('/login')
     }
   }, [props.history]);
+
+  const signupHandler = (userObj) => {
+    fetch(`http://localhost:3000/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({user: userObj})
+    })
+    .then(r => r.json())
+    .then(data => {
+      console.log(data)
+      setUserObj(data.user)
+      localStorage.setItem("token", data.jwt)
+      props.history.push('/profiles')
+    })
+    .catch(error => console.log(error))
+  }
 
   const loginHandler = (userInfo) => {
     fetch(`http://localhost:3000/login`, {
@@ -71,7 +90,8 @@ function App(props) {
     <div className="App">
       <NavBar currentUserObj={userObj} logoutHandler={logoutHandler}/>
       <Switch>
-        <Route exact path="/login" render={() => <Login loginHandler={loginHandler}/>} />
+        <Route exact path="/"><Redirect to="login"/></Route>
+        <Route path="/login" render={() => <Login signupHandler={signupHandler} loginHandler={loginHandler}/>} />
         <Route path="/addPhoto" render={() => <AddPicture loggedInUser={userObj} updateUserPictures={updateUserPictures}/>} />
         <Route path="/profiles" render={() => <ProfileContainer loggedInUser={userObj} updateUserPictures={updateUserPictures} deleteUserPicture={deleteUserPicture}/>} />
         <Route path="/edit" render={() => <EditProfileForm loggedInUser={userObj} />} />
