@@ -20,3 +20,9 @@ export const addLike = (likeObj) => {
         dispatch({type: "add_like", payload: likeObj})
     }
 }
+
+export const deleteLike = (likeObj) => {
+    return function (dispatch){
+        dispatch({type: "delete_like", payload: likeObj})
+    }
+}

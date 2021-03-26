@@ -4,6 +4,7 @@ import FollowButton from './FollowButton'
 import SettingsIcon from '@material-ui/icons/Settings';
 import Modal from 'react-modal'
 import FollowList from './FollowList'
+import {withRouter} from 'react-router-dom'
 
 
 function ProfileHeader(props) {
@@ -22,6 +23,10 @@ function ProfileHeader(props) {
         setModal(false)
     }
 
+    const pushToEditProfile = () => {
+        props.history.push("/editprofile")
+    }
+
     return (
         <div className="profile-header">
             <ProfilePicture userObj={props.userObj}/>
@@ -33,7 +38,7 @@ function ProfileHeader(props) {
             </div>
             <div className="profile-header-buttons">
                 {props.loggedInUser.id === props.userObj.id ?
-                <SettingsIcon />
+                <SettingsIcon onClick={pushToEditProfile}/>
                 :
                 
                 !doesLoggedInUserFollowUser() ? 
@@ -49,4 +54,4 @@ function ProfileHeader(props) {
     );
 }
 
-export default ProfileHeader;
+export default withRouter(ProfileHeader);

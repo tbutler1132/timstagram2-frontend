@@ -94,7 +94,7 @@ function App(props) {
         <Route path="/login" render={() => <Login signupHandler={signupHandler} loginHandler={loginHandler}/>} />
         <Route path="/addPhoto" render={() => <AddPicture loggedInUser={userObj} updateUserPictures={updateUserPictures}/>} />
         <Route path="/profiles" render={() => <ProfileContainer loggedInUser={userObj} updateUserPictures={updateUserPictures} deleteUserPicture={deleteUserPicture}/>} />
-        <Route path="/edit" render={() => <EditProfileForm loggedInUser={userObj} />} />
+        <Route path="/editprofile" render={() => <EditProfileForm loggedInUser={userObj} />} />
       </Switch>
     </div>
   );

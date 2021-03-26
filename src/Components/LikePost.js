@@ -21,7 +21,6 @@ function LikePost(props) {
     }, [])
 
     const likeClickHandler = () => {
-        console.log(pictureLiked)
         if (pictureLiked === "action") {
             likePicture()
         } else if (pictureLiked === "secondary") {
@@ -47,8 +46,8 @@ function LikePost(props) {
         .then(data => {
             data.userObj = props.userObj
             props.addLike(data)
-            console.log(data)
             setPictureLiked("secondary")
+            console.log(data.user)
         })
         .catch(error => {
             console.log('Error:', error);
@@ -57,6 +56,8 @@ function LikePost(props) {
 
     const unlikePicture = () => {
         const like = props.pictureObj.likes.find(like => like.user_id === props.loggedInUser.id)
+        like.userObj = props.userObj
+        props.deleteLike(like)
         if (like){
             const options = {
                 method: "DELETE"
@@ -65,7 +66,6 @@ function LikePost(props) {
             fetch(`http://localhost:3000/likes/${like.id}`, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 setPictureLiked("action")        
             })
             .catch(error => {
@@ -74,9 +74,6 @@ function LikePost(props) {
         }
     }
     
-
-
-
     return (
         <div>
             <div className="post-like-button">
@@ -87,7 +84,10 @@ function LikePost(props) {
 }
 
 const mdp = (dispatch) => {
-    return {addLike: (likeObj) => dispatch({type: "add_like", payload: likeObj})}
+    return {
+        addLike: (likeObj) => dispatch({type: "add_like", payload: likeObj}),
+        deleteLike: (likeObj) => dispatch({type: "delete_like", payload: likeObj})
+    }
 }
 
 export default connect(null, mdp)(LikePost)
