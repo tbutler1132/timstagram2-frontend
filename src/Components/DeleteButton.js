@@ -1,21 +1,32 @@
 import React from 'react';
+import {connect} from 'react-redux'
 
 function DeleteButton(props) {
 
+    console.log(props.pictureObj.id)
+
     const deletePhoto = () => {
-        fetch(`http://localhost:3000/pictures/${props.pictureId}`, {
+        fetch(`http://localhost:3000/pictures/${props.pictureObj.id}`, {
             method: 'DELETE',
         })
         .then(r => r.json()) 
         .then(data => {
-            props.deletePicture(props.pictureId)})
+            console.log(data)
+            props.pictureObj.user_id = props.loggedInUser.id
+            props.deletePicture(props.pictureObj) 
+        }
+        )
     }
 
     return (
-        <div className="delete-button">
-            <button onClick={deletePhoto}>Delete Post</button>
+        <div>
+            <button onClick={deletePhoto}>Well Hello There, I am a Delete Button</button>
         </div>
     );
 }
 
-export default DeleteButton;
+const mdp = (dispatch) => {
+    return {deletePicture: (pictureObj) => dispatch({type: "delete_picture", payload: pictureObj})}
+}
+
+export default connect(null, mdp)(DeleteButton);

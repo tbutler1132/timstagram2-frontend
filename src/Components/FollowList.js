@@ -9,7 +9,7 @@ function FollowList(props) {
     }
 
     const renderFollowees = () => {
-        return props.userObj.followees.map(followee => <p>{followee.username}</p>)
+        return props.userObj.followees.map(followee => <NavLink to={`profiles/${followee.id}`}>{followee.username}</NavLink>)
     }
 
     return (

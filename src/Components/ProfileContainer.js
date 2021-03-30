@@ -15,7 +15,7 @@ function ProfileContainer(props) {
     const renderProfiles = () => {
         return props.profiles.map(profile => 
             
-            <ProfilePage key={profile.id} loggedInUser={findLoggedInUser()} deletePicture={props.deletePicture} userObj={profile} />
+            <ProfilePage key={profile.id} loggedInUser={findLoggedInUser()} deletePicture={props.deleteUserPicture} userObj={profile} />
 
         )
     }

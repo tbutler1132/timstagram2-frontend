@@ -5,8 +5,7 @@ const defaultState = {
 }
 
 function usersReducer(currentState = defaultState.users, action){
-    console.log(action.payload)
-    const user = currentState.find(user => user.id === action.payload.userObj?.id)
+    const user = currentState.find(user => user.id === action.payload?.userObj?.id)
     const userIndex = currentState.indexOf(user)
     switch (action.type){
         case "add_users_from_fetch":
@@ -47,11 +46,50 @@ function usersReducer(currentState = defaultState.users, action){
             const newArrayAddPicture = currentState.slice()
             newArrayAddPicture[loggedInUserIndex].pictures.push(action.payload)
             return newArrayAddPicture
+        case "delete_picture":
+            console.log(action.payload)
+            const newArrayDeletePicture = currentState.slice()
+            const currentUser = currentState.find(user => user.id === action.payload.user_id)
+            const currentUserIndex = currentState.indexOf(currentUser)
+            const pictureForDeletion = currentUser.pictures.find(picture => picture.id === action.payload.id)
+            const pictureForDeletionIndex = currentUser.pictures.indexOf(pictureForDeletion)
+            newArrayDeletePicture[currentUserIndex].pictures.splice(pictureForDeletionIndex, 1)
+            return newArrayDeletePicture
+        case "follow":
+            const newArrayFollow = currentState.slice()
+            const userFollow = currentState.find(user => user.id === action.payload.user_id)
+            const userFollowIndex = currentState.indexOf(userFollow)
+            newArrayFollow[userFollowIndex].followees.push(action.payload)
 
+            const userBeingFollowed = currentState.find(user => user.id === action.payload.id)
+            const userBeingFollowedIndex = currentState.indexOf(userBeingFollowed)
+            newArrayFollow[userBeingFollowedIndex].followers.push(action.payload)
+
+
+            return newArrayFollow
+        case "unfollow":
+            const newArrayUnfollow = currentState.slice()
+
+            const userBeingUnfollowed = currentState.find(user => user.id === action.payload.id)
+            const userBeingUnfollowedIndex = currentState.indexOf(userBeingUnfollowed)
+
+            const userUnfollowing = currentState.find(user => user.id === action.payload.user_id)
+            const userUnfollowingIndex = currentState.indexOf(userUnfollowing)
+            const userBeingUnfollowedWithinUser = userUnfollowing.followees.find(user => user.id === action.payload.id)
+            const userUserBeingUnfollowedIndexWithinUser = currentState.indexOf(userBeingUnfollowedWithinUser)
+
+            console.log(userUnfollowing)
+            newArrayUnfollow[userUnfollowingIndex].followees.splice(userBeingUnfollowedWithinUser, 1)
+            console.log(userBeingUnfollowed)
+            newArrayUnfollow[userBeingUnfollowedIndex].followers.splice(userUnfollowingIndex, 1)
+
+
+            return newArrayUnfollow
         default:
             return currentState
     }
 }
+//
 
 const rootReducer = combineReducers({
     users: usersReducer

@@ -64,6 +64,10 @@
   cursor: pointer;
 }
 
+.sign-up-button {
+  cursor: pointer;
+}
+
 .profile-header {
   display: flex;
   justify-content: center;

@@ -5,6 +5,9 @@ function EditProfileForm(props) {
     const [username, setUsername] = useState("")
     const [bio, setBio] = useState("")
 
+    const [usernameSubmitButton, toggleUsernameButton] = useState(false)
+    const [bioSubmitButton, toggleBioButton] = useState(false)
+
     const usernameHandler = (e) => {
         setUsername(e.target.value)
     }
@@ -26,7 +29,7 @@ function EditProfileForm(props) {
         fetch(`http://localhost:3000/users/${props.loggedInUser.id}`, options)
         .then(r => r.json())
         .then(data => {
-            console.log(data)
+            toggleUsernameButton(true)
         })
         .catch(error => {
             console.log('Error:', error);
@@ -46,7 +49,7 @@ function EditProfileForm(props) {
         fetch(`http://localhost:3000/users/${props.loggedInUser.id}`, options)
         .then(r => r.json())
         .then(data => {
-            console.log(data)
+            toggleBioButton(true)
         })
         .catch(error => {
             console.log('Error:', error);
@@ -58,12 +61,12 @@ function EditProfileForm(props) {
             <form onSubmit={editUsername}>
                 <label>username</label>
                 <input type="text" placeholder={props.loggedInUser.username} value={username} onChange={usernameHandler}/>
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="Submit" disabled={usernameSubmitButton}/>
             </form>
             <form onSubmit={editBio}>
                 <label>Bio</label>
                 <input type="text" placeholder="Bio" value={bio} onChange={bioHandler}/>
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="Submit" disabled={bioSubmitButton}/>
             </form>
         </div>
     );

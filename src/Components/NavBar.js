@@ -30,6 +30,7 @@ function NavBar(props) {
                 <SearchIcon onClick={pushToProfiles} />
             </div>
             <div className="nav-buttons">
+                <h4 onClick={pushToHome}>{props.currentUserObj.username}</h4>
                 <AddIcon onClick={pushToAddPhoto}/>
                 <HomeIcon onClick={pushToHome}/>
                 <Button color="secondary" onClick={props.logoutHandler}>Logout</Button> 

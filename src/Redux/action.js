@@ -32,3 +32,21 @@ export const deleteLike = (likeObj) => {
         dispatch({type: "delete_like", payload: likeObj})
     }
 }
+
+export const deletePicture = (pictureObj) => {
+    return function (dispatch){
+        dispatch({type: "delete_picture", payload: pictureObj})
+    }
+}
+
+export const addFollow = (followObj) => {
+    return function (dispatch){
+        dispatch({type: "follow", payload: followObj})
+    }
+}
+
+export const unfollow = (followObj) => {
+    return function (dispatch){
+        dispatch({type: "unfollow", payload: followObj})
+    }
+}

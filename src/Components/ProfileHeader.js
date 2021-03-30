@@ -42,12 +42,12 @@ function ProfileHeader(props) {
                 :
                 
                 !doesLoggedInUserFollowUser() ? 
-                <FollowButton loggedInUser={props.loggedInUser} userObj={props.userObj}/>
+                <FollowButton following={false} loggedInUser={props.loggedInUser} userObj={props.userObj}/>
                 :
-                <p>Following</p>
+                <FollowButton following={true} loggedInUser={props.loggedInUser} userObj={props.userObj}/>
                 }
             </div>
-            <Modal isOpen={modalIsOpen}>
+            <Modal ariaHideApp={false} isOpen={modalIsOpen}>
                 <FollowList userObj={props.userObj} closeModal={closeModal}/>
             </Modal>
         </div>

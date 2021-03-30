@@ -35,7 +35,8 @@ function Post(props) {
                 <div className="post-buttons">
                     <AddCommentForm loggedInUser={props.loggedInUser} userObj={props.userObj} pictureId={props.pictureObj.id}/>
                     {props.userObj.id === props.loggedInUser.id ?
-                        <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
+                        // <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
+                        <DeleteButton pictureObj={props.pictureObj} loggedInUser={props.loggedInUser}/>
                     :
                         null
                     }

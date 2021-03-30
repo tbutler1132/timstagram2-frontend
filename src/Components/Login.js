@@ -38,7 +38,7 @@ function Login(props) {
                 <input type="text" placeholder="password" value={password} onChange={passwordHandler}/>
                 <input type="submit" value="Submit"></input>
             </form>
-            <p onClick={openModal}>Not a user? Sign up!</p>
+            <p className="sign-up-button" onClick={openModal}>Not a user? Sign up!</p>
             <Modal ariaHideApp={false} isOpen={modalIsOpen}>
                 <Signup signupHandler={props.signupHandler} closeModal={closeModal}/>
             </Modal>
