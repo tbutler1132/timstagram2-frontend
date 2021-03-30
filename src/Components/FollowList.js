@@ -1,15 +1,15 @@
 import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 function FollowList(props) {
 
     const renderFollowers = () => {
-        return props.userObj.followers.map(follower => <NavLink to={`profiles/${follower.id}`}>{follower.username}</NavLink>)
+        return props.userObj.followers.map(follower => <Link onClick={props.closeModal} key={follower.id} to={`${follower.id}`}>{follower.username}</Link>)
     }
 
     const renderFollowees = () => {
-        return props.userObj.followees.map(followee => <NavLink to={`profiles/${followee.id}`}>{followee.username}</NavLink>)
+        return props.userObj.followees.map(followee => <Link onClick={props.closeModal} key={followee.id} to={`${followee.id}`}>{followee.username}</Link>)
     }
 
     return (
