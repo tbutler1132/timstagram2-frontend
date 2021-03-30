@@ -29,11 +29,11 @@ function NavBar(props) {
                 <input onChange={pushToProfiles} type="text" placeholder="Search.."></input>
                 <SearchIcon onClick={pushToProfiles} />
             </div>
-            <div className="nav-buttons">
-                <h4 onClick={pushToHome}>{props.currentUserObj.username}</h4>
-                <AddIcon onClick={pushToAddPhoto}/>
-                <HomeIcon onClick={pushToHome}/>
-                <Button color="secondary" onClick={props.logoutHandler}>Logout</Button> 
+            <div className="nav-buttons-container">
+                <h4 className="nav-button" onClick={pushToHome}>{props.currentUserObj.username}</h4>
+                <AddIcon className="nav-button" onClick={pushToAddPhoto}/>
+                <HomeIcon className="nav-button" onClick={pushToHome}/>
+                <Button className="nav-button" color="secondary" onClick={props.logoutHandler}>Logout</Button> 
             </div>
             </>
             : 
