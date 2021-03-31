@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function DeleteButton(props) {
 
@@ -20,7 +21,7 @@ function DeleteButton(props) {
 
     return (
         <div>
-            <button onClick={deletePhoto}>Well Hello There, I am a Delete Button</button>
+            <DeleteIcon onClick={deletePhoto}/>
         </div>
     );
 }

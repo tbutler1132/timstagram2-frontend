@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {withRouter, Switch, Route, Link} from 'react-router-dom'
+import React, {useEffect} from 'react';
+import {withRouter, Switch, Route} from 'react-router-dom'
 import ProfilePage from './ProfilePage';
 import {compose} from 'redux'
 import {connect} from 'react-redux'

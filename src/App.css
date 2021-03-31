@@ -107,26 +107,84 @@
 }
 
 .post {
+  flex: 1;
   display: flex;
-  border-style: solid;
   max-width: min-content;
   margin-top: 1%;
-  overflow: scroll;
+  border-style: solid;
+  border-width: thin;
+  /* height: 400px; */
 }
 
+.Modal {
+  max-width: min-content;
+
+  background-color: papayawhip;
+}
+
+.modal-close-icon {
+  margin-left: 97%;
+  margin-top: .5%
+}
+
+.post-image {
+  border: solid;
+  overflow: hidden;
+  width: 400px;
+  height: 400px;
+}
+
+.post-text {
+  height: 400px;
+}
 
 .post-caption {
   border-bottom: solid;
   border-width: thin;
 }
 
-.post-like {
+.post-actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   border-bottom: solid;
   border-width: thin;
+  height: 50px;
+  overflow: scroll;
+}
+
+.post-bottom {
+  height: 220px;
+}
+
+.post-buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .post-comment-section {
   border-bottom: solid;
   border-width: thin;
+  align-items: center;
+  height: 200px;
   overflow: scroll;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.username-change-form {
+  margin-bottom: 1%;
+}
+
+.info-change-input {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }

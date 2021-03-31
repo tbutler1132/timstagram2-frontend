@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {Button} from '@material-ui/core'
+
 
 function EditProfileForm(props) {
 
@@ -58,15 +60,15 @@ function EditProfileForm(props) {
 
     return (
         <div className="edit-profile-form">
-            <form onSubmit={editUsername}>
+            <form className="username-change-form" onSubmit={editUsername}>
                 <label>username</label>
-                <input type="text" placeholder={props.loggedInUser.username} value={username} onChange={usernameHandler}/>
-                <input type="submit" value="Submit" disabled={usernameSubmitButton}/>
+                <input className="info-change-input" type="text" placeholder={props.loggedInUser.username} value={username} onChange={usernameHandler}/>
+                <Button type="submit" value="Submit" disabled={usernameSubmitButton}>Submit</Button>
             </form>
-            <form onSubmit={editBio}>
+            <form className="bio-change-form" onSubmit={editBio}>
                 <label>Bio</label>
-                <input type="text" placeholder="Bio" value={bio} onChange={bioHandler}/>
-                <input type="submit" value="Submit" disabled={bioSubmitButton}/>
+                <input className="info-change-input" type="text" placeholder="Bio" value={bio} onChange={bioHandler}/>
+                <Button type="submit" value="Submit" disabled={usernameSubmitButton}>Submit</Button>
             </form>
         </div>
     );

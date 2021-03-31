@@ -14,11 +14,11 @@ function FollowList(props) {
 
     return (
         <div>
+            <CloseIcon className="modal-close-icon" onClick={props.closeModal}/>
             <h3>Followers</h3>
             {renderFollowers()}
             <h3>Following</h3>
             {renderFollowees()}
-            <CloseIcon onClick={props.closeModal}/>
         </div>
     );
 }

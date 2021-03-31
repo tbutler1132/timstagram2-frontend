@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {addNewComment} from '../Redux/action'
 import {connect} from 'react-redux'
+import {Button} from '@material-ui/core'
 
 function AddCommentForm(props) {
     // console.log(props.userObj)
@@ -42,9 +42,9 @@ function AddCommentForm(props) {
     return (
         <div>
             <form onSubmit={submitComment}>
-                <label>Comment</label>
                 <input type="text" placeholder="Add comment" value={comment} onChange={commentHandler}/>
-                <input type="submit" value="Submit"/>
+                <Button color="primary" type="Submit">Submit</Button>
+                {/* <input type="submit" value="Submit"/> */}
             </form>
         </div>
     );
