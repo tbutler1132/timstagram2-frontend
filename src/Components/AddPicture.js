@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
+import {Button} from '@material-ui/core'
 
 function AddPicture(props) {
     const [url, setUrl] = useState("")
@@ -43,12 +44,12 @@ function AddPicture(props) {
 
     return (
         <div>
-            <form onSubmit={submitPhoto}>
+            <form className="edit-profile-form" onSubmit={submitPhoto}>
                 <label>Photo Url</label>
-                <input type="text" placeholder="Photo URL" value={url} onChange={urlHandler}/>
+                <input className="picture-add-input" type="text" placeholder="Photo URL" value={url} onChange={urlHandler}/>
                 <label>Caption</label>
-                <input type="text" placeholder="Caption" value={caption} onChange={captionHandler}/>
-                <input type="submit" value="Submit"/>
+                <input className="picture-add-input" type="text" placeholder="Caption" value={caption} onChange={captionHandler}/>
+                <Button type="submit" value="Submit">Submit</Button>
             </form>
         </div>
     );

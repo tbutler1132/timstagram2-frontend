@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import {Button} from '@material-ui/core'
 
 function FollowButton(props) {
 
@@ -58,9 +59,9 @@ function FollowButton(props) {
     return (
         <div>
             {!props.following ? 
-            <button onClick={followUser}>Follow</button>
+            <Button variant="outlined" onClick={followUser}>Follow</Button>
             :
-            <button onClick={unfollowUser}>Unfollow</button>
+            <Button variant="outlined" onClick={unfollowUser}>Unfollow</Button>
             }
         </div>
     );

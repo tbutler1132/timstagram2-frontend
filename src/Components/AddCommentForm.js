@@ -42,7 +42,7 @@ function AddCommentForm(props) {
     return (
         <div>
             <form onSubmit={submitComment}>
-                <input type="text" placeholder="Add comment" value={comment} onChange={commentHandler}/>
+                <input className="comment-input-bar" type="text" placeholder="Add comment" value={comment} onChange={commentHandler}/>
                 <Button color="primary" type="Submit">Submit</Button>
                 {/* <input type="submit" value="Submit"/> */}
             </form>

@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -113,6 +115,7 @@
   margin-top: 1%;
   border-style: solid;
   border-width: thin;
+  border-color: gray;
   /* height: 400px; */
 }
 
@@ -166,8 +169,13 @@
   border-bottom: solid;
   border-width: thin;
   align-items: center;
-  height: 200px;
+  height: 180px;
   overflow: scroll;
+}
+
+.comment-input-bar {
+  margin-top: 10%;
+  width: 50%;
 }
 
 .edit-profile-form {
@@ -184,6 +192,15 @@
 
 .info-change-input {
   width: 100%;
+  padding: 10px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+
+
+.picture-add-input {
+  width: 35%;
   padding: 10px 10px;
   margin: 8px 0;
   box-sizing: border-box;
