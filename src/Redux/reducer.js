@@ -10,6 +10,15 @@ function usersReducer(currentState = defaultState.users, action){
     switch (action.type){
         case "add_users_from_fetch":
             return action.payload
+
+
+
+
+
+
+
+
+            
         case "add_comment":
             // const user = currentState.find(user => user.id === action.payload.userObj.id)
             // const userIndex = currentState.indexOf(user)

@@ -1,11 +1,23 @@
+import axios from 'axios'
+
+const BASE_API = "http://localhost:7000"
+
+//Get the users from API
 export const getUsers = () => {
     return function (dispatch){
-        fetch(`http://localhost:3000/users`, {
-        })
-        .then(r => r.json())
-        .then(data => {
-            dispatch({type: "add_users_from_fetch", payload: data})
-        })
+        axios({
+            method: 'GET',
+            url: `${BASE_API}/users`,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
+          })
+          .then(users => 
+            {
+                dispatch({type: "add_users_from_fetch", payload: users.data})
+            }
+          )
     }   
 }
 

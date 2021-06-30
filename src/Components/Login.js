@@ -31,12 +31,12 @@ function Login(props) {
     return (
         <div>
             <h1>Please Login</h1>
-            <form onSubmit={submitHandler}>
+            <form className="login-form" onSubmit={submitHandler}>
                 <label>Username</label>
-                <input type="text" placeholder="username" value={username} onChange={usernameHandler}/>
+                <input className="login-input" type="text" placeholder="username" value={username} onChange={usernameHandler}/>
                 <label>Password</label>
-                <input type="text" placeholder="password" value={password} onChange={passwordHandler}/>
-                <input type="submit" value="Submit"></input>
+                <input className="login-input" type="password" placeholder="password" value={password} onChange={passwordHandler}/>
+                <input type="submit" value="Login"></input>
             </form>
             <p className="sign-up-button" onClick={openModal}>Not a user? Sign up!</p>
             <Modal ariaHideApp={false} isOpen={modalIsOpen}>

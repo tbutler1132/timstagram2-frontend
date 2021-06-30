@@ -33,12 +33,12 @@ function ProfileHeader(props) {
             <div className="header-bio">
                 <h2>{props.userObj.username}</h2>
                 <h4>{props.userObj.bio}</h4>
-                <p onClick={openModal}>Followers: {props.userObj.followers.length}</p>
-                <p>Following: {props.userObj.followees.length}</p>
+                <p onClick={openModal}>Followers: {props.userObj.follower_ids.length}</p>
+                <p>Following: {props.userObj.followee_ids.length}</p>
             </div>
             <div className="profile-header-buttons">
                 {props.loggedInUser.id === props.userObj.id ?
-                <SettingsIcon onClick={pushToEditProfile}/>
+                <SettingsIcon className="settings-icon" onClick={pushToEditProfile}/>
                 :
                 
                 !doesLoggedInUserFollowUser() ? 
@@ -47,7 +47,15 @@ function ProfileHeader(props) {
                 <FollowButton following={true} loggedInUser={props.loggedInUser} userObj={props.userObj}/>
                 }
             </div>
-            <Modal ariaHideApp={false} isOpen={modalIsOpen}>
+            <Modal style={{
+                content: {
+                    left: '500px',
+                    right: '500px',
+                    top: '250px',
+                    bottom: '250px',
+                    alignContent: 'center',
+                }
+            }} ariaHideApp={false} isOpen={modalIsOpen}>
                 <FollowList userObj={props.userObj} closeModal={closeModal}/>
             </Modal>
         </div>

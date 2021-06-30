@@ -92,6 +92,10 @@
   color: rgb(4, 17, 27);
 }
 
+.settings-icon {
+  cursor: pointer;
+}
+
 .profile-header-buttons {
   margin-top: 1.2%;
   margin-left: 2%;
@@ -105,7 +109,7 @@
   display: grid;
   justify-content: center;
   /* flex-wrap: wrap; */
-  background: rgb(255, 250, 245);
+  background: rgb(255, 255, 255);
 }
 
 .post {
@@ -116,6 +120,7 @@
   border-style: solid;
   border-width: thin;
   border-color: gray;
+  background-color: rgb(247, 246, 245);
   /* height: 400px; */
 }
 
@@ -131,9 +136,8 @@
 }
 
 .post-image {
-  border: solid;
   overflow: hidden;
-  width: 400px;
+  width: 480px;
   height: 400px;
 }
 
@@ -145,6 +149,10 @@
   border-bottom: solid;
   border-width: thin;
 }
+
+/* .delete-post-button {
+  
+} */
 
 .post-actions {
   display: flex;
@@ -163,6 +171,11 @@
 .post-buttons {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+#likes {
+  color: rgb(53, 3, 3);
 }
 
 .post-comment-section {
@@ -197,11 +210,26 @@
   box-sizing: border-box;
 }
 
-
-
 .picture-add-input {
   width: 35%;
   padding: 10px 10px;
   margin: 8px 0;
   box-sizing: border-box;
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-input {
+  width: 15%;
+  padding: 10px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+

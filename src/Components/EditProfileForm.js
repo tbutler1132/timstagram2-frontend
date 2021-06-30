@@ -63,12 +63,12 @@ function EditProfileForm(props) {
             <form className="username-change-form" onSubmit={editUsername}>
                 <label>username</label>
                 <input className="info-change-input" type="text" placeholder={props.loggedInUser.username} value={username} onChange={usernameHandler}/>
-                <Button type="submit" value="Submit" disabled={usernameSubmitButton}>Submit</Button>
+                <Button variant="outlined" type="submit" value="Submit" disabled={usernameSubmitButton}>Submit</Button>
             </form>
             <form className="bio-change-form" onSubmit={editBio}>
                 <label>Bio</label>
                 <input className="info-change-input" type="text" placeholder="Bio" value={bio} onChange={bioHandler}/>
-                <Button type="submit" value="Submit" disabled={usernameSubmitButton}>Submit</Button>
+                <Button variant="outlined" type="submit" value="Submit" disabled={usernameSubmitButton}>Submit</Button>
             </form>
         </div>
     );

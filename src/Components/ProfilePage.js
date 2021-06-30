@@ -5,6 +5,8 @@ import {Route, Switch, Link} from 'react-router-dom'
 
 function ProfilePage(props) {
 
+    console.log(props)
+
     return (
         <div className="profile-page">
             {props.userObj ?
@@ -23,7 +25,7 @@ function ProfilePage(props) {
                     } 
                 />
 
-                <Link to={`profiles/${props.userObj.id}`}>{props.userObj.username}</Link>
+                <Link to={`profiles/${props.userObj._id}`}>{props.userObj.username}</Link>
             </Switch>
                     :
                     null

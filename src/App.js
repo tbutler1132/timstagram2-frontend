@@ -1,33 +1,55 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
+import axios from 'axios'
+
 import Login from './Components/Login'
 import NavBar from './Components/NavBar'
 import AddPicture from './Components/AddPicture'
 import ProfileContainer from './Components/ProfileContainer'
 import EditProfileForm from './Components/EditProfileForm'
 
+const BASE_API = "http://localhost:7000"
+
 
 function App(props) {
   const [userObj, setUserObj] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token")
 
-    if (token) {
-      fetch(`http://localhost:3000/profile`, {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(r => r.json())
-        .then(data => {
-          setUserObj(data.user);
-      })
-      .catch(error => console.log(error))
-    } else {
-      props.history.push('/login')
-    }
-  }, [props.history]);
+//AUTH
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token")
+
+  //   if (token) {
+  //     fetch(`http://localhost:3000/profile`, {
+  //       method: "GET",
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then(r => r.json())
+  //       .then(data => {
+  //         setUserObj(data.user);
+  //     })
+  //     .catch(error => console.log(error))
+  //   } else {
+  //     props.history.push('/login')
+  //   }
+  // }, [props.history]);
+
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: `${BASE_API}/users/60db7aae93cc0b2786b53344`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(user => 
+      {
+        setUserObj(user.data)
+      }
+    )
+  }, [])
 
   const signupHandler = (userObj) => {
     fetch(`http://localhost:3000/users`, {
@@ -89,7 +111,7 @@ function App(props) {
     <div className="App">
       <NavBar currentUserObj={userObj} logoutHandler={logoutHandler}/>
       <Switch>
-        <Route exact path="/"><Redirect to="login"/></Route>
+        <Route exact path="/"><Redirect to="profiles"/></Route>
         <Route path="/login" render={() => <Login signupHandler={signupHandler} loginHandler={loginHandler}/>} />
         <Route path="/addPhoto" render={() => <AddPicture loggedInUser={userObj} updateUserPictures={updateUserPictures}/>} />
         <Route path="/profiles" render={() => <ProfileContainer loggedInUser={userObj} updateUserPictures={updateUserPictures} deleteUserPicture={deleteUserPicture}/>} />
