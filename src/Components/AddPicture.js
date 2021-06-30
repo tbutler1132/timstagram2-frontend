@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {Button} from '@material-ui/core'
+import axios from 'axios'
 
 function AddPicture(props) {
     const [url, setUrl] = useState("")
@@ -19,9 +20,10 @@ function AddPicture(props) {
     const submitPhoto = (e) => {
         e.preventDefault()
         const newPicture = {
-            photo_url: url,
-            user_id: props.loggedInUser.id,
-            Caption: caption
+            url: url,
+            caption: caption,
+            comments: [],
+            likes: []
         }
         const options = {
             method: "POST",
@@ -29,12 +31,12 @@ function AddPicture(props) {
               "content-type": "application/json",
               "accept": "application/json"
             },
-            body: JSON.stringify({ picture: newPicture })
+            data: newPicture
         }
-        fetch("http://localhost:3000/pictures", options)
-        .then(r => r.json())
-        .then(data => {
-            props.addNewPicture(data)
+        axios(`http://localhost:7000/users/${props.loggedInUser._id}/pictures`, options)
+        .then(picture => {
+            console.log(picture)
+            props.addNewPicture(picture.data)
             props.history.push(`/profiles/${props.loggedInUser.id}`)})
         .catch(error => {
             console.log('Error:', error);
