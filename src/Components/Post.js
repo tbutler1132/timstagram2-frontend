@@ -9,10 +9,10 @@ function Post(props) {
     // const [modalIsOpen, setModal] = useState(false)
     
     const renderComments = () => {return props.pictureObj.comments.map(comment => comment.content ? 
-        <div className="post-comment" key={comment.id}>
+        <div className="post-comment" key={comment._id}>
             <p>
-                {comment.user.username ? comment.user.username : comment.user}: {comment.content} 
-                {comment.user === props.loggedInUser ? <MoreHorizIcon /> : null}
+                {comment.username}: {comment.content} 
+                {/* {comment.username === props.loggedInUser.username ? <MoreHorizIcon /> : null} */}
             </p>
         </div> 
         : null)
@@ -53,7 +53,7 @@ function Post(props) {
                         {/* <LikePost loggedInUser={props.loggedInUser} pictureObj={props.pictureObj} userObj={props.userObj}/> */}
                     </div>
                     <div className="post-buttons">
-                        <AddCommentForm loggedInUser={props.loggedInUser} userObj={props.userObj} pictureId={props.pictureObj.id}/>
+                        <AddCommentForm loggedInUser={props.loggedInUser} userObj={props.userObj} pictureId={props.pictureObj._id}/>
                 </div>
                 </div>
             </div>

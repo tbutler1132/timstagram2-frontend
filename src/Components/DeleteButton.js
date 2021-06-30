@@ -1,20 +1,21 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import DeleteIcon from '@material-ui/icons/Delete';
+import axios from 'axios'
 
 function DeleteButton(props) {
 
-    console.log(props.pictureObj.id)
+    console.log(props.loggedInUser, props.pictureObj)
 
     const deletePhoto = () => {
-        fetch(`http://localhost:3000/pictures/${props.pictureObj.id}`, {
+        axios(`http://localhost:7000/users/${props.loggedInUser._id}/pictures`, {
             method: 'DELETE',
+            data: {id: props.pictureObj._id}
         })
-        .then(r => r.json()) 
-        .then(data => {
-            console.log(data)
-            props.pictureObj.user_id = props.loggedInUser.id
-            props.deletePicture(props.pictureObj) 
+        .then(picture => {
+            console.log(picture)
+            // props.pictureObj.user_id = props.loggedInUser.id
+            // props.deletePicture(props.pictureObj) 
         }
         )
     }

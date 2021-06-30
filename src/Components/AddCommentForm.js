@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
+import axios from 'axios'
 
 function AddCommentForm(props) {
     // console.log(props.userObj)
@@ -14,10 +15,13 @@ function AddCommentForm(props) {
 
     const submitComment = (e) => {
         e.preventDefault()
-        const newComment = {
-            picture_id: props.pictureId,
-            user_id: props.loggedInUser.id,
-            content: comment
+        const body = {
+            comment: {
+                content: comment,
+                userId: "60db7aae93cc0b2786b53344",
+                username: props.loggedInUser.username
+            },
+            id: "60dbb182e41c1141259381b7"
         }
         const options = {
             method: "POST",
@@ -25,14 +29,11 @@ function AddCommentForm(props) {
               "content-type": "application/json",
               "accept": "application/json"
             },
-            body: JSON.stringify({ comment: newComment })
+            data: body
         }
-        fetch("http://localhost:3000/comments", options)
-        .then(r => r.json())
-        .then(data => {
-            data.userObj = props.userObj
-            props.addNewComment(data)
-            setComment("")
+        axios(`http://localhost:7000/users/${props.userObj._id}/pictures/comments`, options)
+        .then(comment => {
+            console.log(comment.data)
         })
         .catch(error => {
             console.log('Error:', error);

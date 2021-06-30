@@ -8,7 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 function NavBar(props) {
 
     const pushToHome = () => {
-        props.history.push(`/profiles/${props.currentUserObj.id}`)
+        props.history.push(`/profiles/${props.currentUserObj._id}`)
     }
 
     const pushToAddPhoto = () => {
