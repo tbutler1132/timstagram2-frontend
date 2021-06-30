@@ -11,9 +11,11 @@ function ProfileHeader(props) {
     const [modalIsOpen, setModal] = useState(false)
 
     const doesLoggedInUserFollowUser = () => {
-        const followerIds = (props.loggedInUser.followees.map(user => user.id))
-        return followerIds.includes(props.userObj.id)
+        const followerIds = (props.loggedInUser.followees.map(followeeDoc => followeeDoc.userId))
+        return followerIds.includes(props.userObj._id)
     }
+
+    console.log(doesLoggedInUserFollowUser())
 
     const openModal = () => {
         setModal(true)
@@ -33,11 +35,11 @@ function ProfileHeader(props) {
             <div className="header-bio">
                 <h2>{props.userObj.username}</h2>
                 <h4>{props.userObj.bio}</h4>
-                <p onClick={openModal}>Followers: {props.userObj.follower_ids.length}</p>
-                <p>Following: {props.userObj.followee_ids.length}</p>
+                <p onClick={openModal}>Followers: {props.userObj.followers.length}</p>
+                <p>Following: {props.userObj.followees.length}</p>
             </div>
             <div className="profile-header-buttons">
-                {props.loggedInUser.id === props.userObj.id ?
+                {props.loggedInUser._id === props.userObj._id ?
                 <SettingsIcon className="settings-icon" onClick={pushToEditProfile}/>
                 :
                 

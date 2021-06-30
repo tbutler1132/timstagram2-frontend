@@ -5,8 +5,6 @@ import axios from 'axios'
 
 function DeleteButton(props) {
 
-    console.log(props.loggedInUser, props.pictureObj)
-
     const deletePhoto = () => {
         axios(`http://localhost:7000/users/${props.loggedInUser._id}/pictures`, {
             method: 'DELETE',

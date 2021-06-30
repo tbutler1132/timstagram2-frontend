@@ -5,8 +5,6 @@ import {Route, Switch, Link} from 'react-router-dom'
 
 function ProfilePage(props) {
 
-    console.log(props)
-
     return (
         <div className="profile-page">
             {props.userObj ?

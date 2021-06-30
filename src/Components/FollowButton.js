@@ -1,15 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
+import axios from 'axios'
 
 function FollowButton(props) {
 
-    console.log(props.userObj)
+    const thisProfileFollowerDoc = () => {
+        return props.userObj.followers.find(user => user.userId === props.loggedInUser._id)
+    }
+
+    const loggedInUserFolloweeDoc = () => {
+        return props.loggedInUser.followees.find(user => user.userId === props.userObj._id)
+    }
+
 
     const followUser = () => {
         const newFollow = {
-            followee_id: props.userObj.id,
-            follower_id: props.loggedInUser.id,
+            userId: props.userObj._id,
+            username: props.userObj.username,
         }
         const options = {
             method: "POST",
@@ -17,13 +25,11 @@ function FollowButton(props) {
               "content-type": "application/json",
               "accept": "application/json"
             },
-            body: JSON.stringify({ follow: newFollow })
+            data: newFollow
         }
-        fetch("http://localhost:3000/follows", options)
-        .then(r => r.json())
-        .then(data => {
-            props.userObj.user_id = props.loggedInUser.id
-            props.addFollow(props.userObj)
+        axios(`http://localhost:7000/users/${props.loggedInUser._id}/follow`, options)
+        .then(followed => {
+            console.log(followed)
         })
         .catch(error => {
             console.log('Error:', error);
@@ -34,25 +40,28 @@ function FollowButton(props) {
 
     const unfollowUser = () => {
 
-        fetch(`http://localhost:3000/follows`, {
-        })
-        .then(r => r.json())
-        .then(data => {
-            
-            const followId = () => { 
-                return data.find(follow => follow.follower_id === props.loggedInUser.id && follow.followee_id === props.userObj.id
-            ).id}
-            fetch(`http://localhost:3000/follows/${followId()}`, {
-                method: 'DELETE',
-            })
-            .then(r => r.json()) 
-            .then(data => {
-                props.userObj.user_id = props.loggedInUser.id
-                props.unFollow(props.userObj)
-            }
-            )
+        const payload = {
+            followeeDocId: loggedInUserFolloweeDoc()._id,
+            followerDocId: thisProfileFollowerDoc()._id,
+            followeeId: props.userObj._id
+        }
 
+        const options = {
+            method: 'DELETE',
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            data: payload
+        }
+
+        axios(`http://localhost:7000/users/${props.loggedInUser._id}/follow`, options)
+        .then(data => {
+            console.log(data)
         })
+        .catch(error => {
+            console.log('Error:', error);
+        });
 
     }
 

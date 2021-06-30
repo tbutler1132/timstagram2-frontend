@@ -15,7 +15,6 @@ const BASE_API = "http://localhost:7000"
 function App(props) {
   const [userObj, setUserObj] = useState(false);
 
-
 //AUTH
   // useEffect(() => {
   //   const token = localStorage.getItem("token")
@@ -108,6 +107,7 @@ function App(props) {
 
 
   return (
+    userObj ?
     <div className="App">
       <NavBar currentUserObj={userObj} logoutHandler={logoutHandler}/>
       <Switch>
@@ -118,6 +118,8 @@ function App(props) {
         <Route path="/editprofile" render={() => <EditProfileForm loggedInUser={userObj} />} />
       </Switch>
     </div>
+      :
+      null 
   );
 }
 
