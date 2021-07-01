@@ -20,15 +20,18 @@ function usersReducer(currentState = defaultState.users, action){
 
             
         case "add_comment":
-            // const user = currentState.find(user => user.id === action.payload.userObj.id)
-            // const userIndex = currentState.indexOf(user)
             const newArray = currentState.slice()
-            const picture = user.pictures.find(picture => picture.id === action.payload.picture.id)
-            const pictureIndex = user.pictures.indexOf(picture)
-            action.payload.picture = action.payload.picture.id
-            action.payload.user = action.payload.user.username
-            newArray[userIndex].pictures[pictureIndex].comments.push(action.payload)
+
+
+            const pictureIndex = user.pictures.indexOf(user.pictures.find(picture => picture._id === action.payload.pictureId))
+            newArray.pictures[pictureIndex].comments.push(action.payload.comment)
+            console.log(newArray)
             return newArray
+            // const pictureIndex = user.pictures.indexOf(picture)
+            // action.payload.picture = action.payload.picture.id
+            // action.payload.user = action.payload.user.username
+            // newArray[userIndex].pictures[pictureIndex].comments.push(action.payload)
+            // return newArray
         case "add_like":
             const user2 = currentState.find(user => user.id === action.payload.userObj.id)
             const userIndex2 = currentState.indexOf(user2)

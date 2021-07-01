@@ -19,8 +19,6 @@ function LikePost(props) {
         // return props.loggedInUser.likes.map(like => like.picture.id).includes(props.pictureObj.id)
     }
 
-    console.log(liked())
-
     useEffect(() => {
             if (liked()) {setPictureLiked("secondary")}
     }, [])

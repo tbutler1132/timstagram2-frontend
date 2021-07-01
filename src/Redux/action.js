@@ -28,6 +28,7 @@ export const addPicture = (pictureObj) => {
 }
 
 export const addNewComment = (commentObj) => {
+    console.log(commentObj)
     return function (dispatch){
         dispatch({type: "add_comment", payload: commentObj})
     }

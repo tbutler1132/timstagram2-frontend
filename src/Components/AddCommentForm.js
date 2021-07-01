@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux'
 import {Button} from '@material-ui/core'
 import axios from 'axios'
+import { addNewComment } from '../Redux/action';
 
 function AddCommentForm(props) {
 
@@ -32,6 +33,10 @@ function AddCommentForm(props) {
         axios(`http://localhost:7000/users/${props.userObj._id}/pictures/comments`, options)
         .then(comment => {
             console.log(comment.data)
+            addNewComment({
+                comment: comment.data,
+                pictureId: props.pictureId
+            })
         })
         .catch(error => {
             console.log('Error:', error);
