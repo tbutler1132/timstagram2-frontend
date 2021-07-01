@@ -4,8 +4,6 @@ import {Button} from '@material-ui/core'
 import axios from 'axios'
 
 function AddCommentForm(props) {
-    // console.log(props.userObj)
-    // console.log(props.loggedInUser)
 
     const [comment, setComment] = useState("")
 
@@ -18,10 +16,10 @@ function AddCommentForm(props) {
         const body = {
             comment: {
                 content: comment,
-                userId: "60db7aae93cc0b2786b53344",
+                userId: props.loggedInUser._id,
                 username: props.loggedInUser.username
             },
-            id: "60dbb182e41c1141259381b7"
+            id: props.pictureId
         }
         const options = {
             method: "POST",

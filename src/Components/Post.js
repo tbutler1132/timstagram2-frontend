@@ -34,8 +34,8 @@ function Post(props) {
             <div className="post-text">
                 <div className="post-caption">
                     <h4>{props.userObj.username}:</h4>
-                    <p>{props.pictureObj.Caption}</p>
-                        {props.userObj.id === props.loggedInUser.id ?
+                    <p>{props.pictureObj.caption}</p>
+                        {props.userObj._id === props.loggedInUser._id ?
                             // <DeleteButton pictureId={props.pictureObj.id} deletePicture={props.deletePicture}/>
                         <DeleteButton className="delete-post-button" pictureObj={props.pictureObj} loggedInUser={props.loggedInUser}/>
                         :
@@ -50,7 +50,7 @@ function Post(props) {
                     <div className="post-actions">
                         <p id="likes">Likes</p>
                         <p>{props.pictureObj.likes.length}</p>
-                        {/* <LikePost loggedInUser={props.loggedInUser} pictureObj={props.pictureObj} userObj={props.userObj}/> */}
+                        <LikePost loggedInUser={props.loggedInUser} pictureObj={props.pictureObj} userObj={props.userObj}/>
                     </div>
                     <div className="post-buttons">
                         <AddCommentForm loggedInUser={props.loggedInUser} userObj={props.userObj} pictureId={props.pictureObj._id}/>

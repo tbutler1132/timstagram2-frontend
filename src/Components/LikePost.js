@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import {connect} from 'react-redux'
+import axios from 'axios'
 
 function LikePost(props) {
     // Initial Like -> Like added, color change, no delete/no color change on second click
@@ -13,8 +14,12 @@ function LikePost(props) {
     const [pictureLiked, setPictureLiked] = useState("action")
 
     const liked = () => {
-        return props.loggedInUser.likes.map(like => like.picture.id).includes(props.pictureObj.id)
+        const idsOfUsersWhoLikedPic = () => {return props.pictureObj.likes.map(like => like.userId)}
+        return idsOfUsersWhoLikedPic().includes(props.loggedInUser._id)
+        // return props.loggedInUser.likes.map(like => like.picture.id).includes(props.pictureObj.id)
     }
+
+    console.log(liked())
 
     useEffect(() => {
             if (liked()) {setPictureLiked("secondary")}
@@ -29,9 +34,12 @@ function LikePost(props) {
     }
 
     const likePicture = () => {
-        const newLike = {
-            user_id: props.loggedInUser.id,
-            picture_id: props.pictureObj.id,
+        const payload =  {
+            like: {
+                userId: props.loggedInUser._id,
+                username: props.loggedInUser.username
+            },
+            id: props.pictureObj._id
         }
         const options = {
             method: "POST",
@@ -39,15 +47,14 @@ function LikePost(props) {
               "content-type": "application/json",
               "accept": "application/json"
             },
-            body: JSON.stringify({ like: newLike })
+            data: payload
         }
-        fetch("http://localhost:3000/likes", options)
-        .then(r => r.json())
-        .then(data => {
-            data.userObj = props.userObj
-            props.addLike(data)
-            setPictureLiked("secondary")
-            console.log(data.user)
+        axios(`http://localhost:7000/users/${props.userObj._id}/pictures/likes`, options)
+        .then(like => {
+            // data.userObj = props.userObj
+            // props.addLike(data)
+            // setPictureLiked("secondary")
+            console.log(like)
         })
         .catch(error => {
             console.log('Error:', error);
@@ -55,23 +62,22 @@ function LikePost(props) {
     }
 
     const unlikePicture = () => {
-        const like = props.pictureObj.likes.find(like => like.user_id === props.loggedInUser.id)
-        like.userObj = props.userObj
-        props.deleteLike(like)
-        if (like){
+        const like = props.pictureObj.likes.find(like => like.userId === props.loggedInUser._id)
+
             const options = {
-                method: "DELETE"
+                method: "DELETE",
+                data: {likeId: like._id, pictureId: props.pictureObj._id}
             }
               
-            fetch(`http://localhost:3000/likes/${like.id}`, options)
-            .then(response => response.json())
-            .then(data => {
+            axios(`http://localhost:7000/users/${props.userObj._id}/pictures/likes`, options)
+            .then(like => {
+                console.log(like)
                 setPictureLiked("action")        
             })
             .catch(error => {
                 setPictureLiked("action");
             });
-        }
+        
     }
     
     return (
